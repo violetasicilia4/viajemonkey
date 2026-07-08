@@ -1,4 +1,4 @@
-const CACHE_VERSION = "v1";
+const CACHE_VERSION = "v2";
 const CACHE_NAME = `monkeytrip-shell-${CACHE_VERSION}`;
 
 const APP_SHELL = [
@@ -8,10 +8,10 @@ const APP_SHELL = [
   "/assets/index-bbdv7vmt.css",
   "/manifest.webmanifest",
   "/offline.html",
-  "/icons/icon-192.png",
-  "/icons/icon-512.png",
-  "/icons/icon-512-maskable.png",
-  "/icons/apple-touch-icon.png"
+  "/icons/icon-192-v2.png",
+  "/icons/icon-512-v2.png",
+  "/icons/icon-512-maskable-v2.png",
+  "/icons/apple-touch-icon-v2.png"
 ];
 
 self.addEventListener("install", (event) => {
