@@ -4,10 +4,67 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Destinos & Tickets | Travel Concierge</title>
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#0a0a0c" />
+    <meta name="background-color" content="#0a0a0c" />
+
+    <!-- iOS install support -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="MonkeyTrip" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+
+    <!-- Android / general -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+
     <script type="module" crossorigin src="/assets/index-crgr9kqv.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-bbdv7vmt.css">
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Offline status indicator: fixed, unobtrusive banner outside the app's own DOM tree so it never
+         touches the existing UI. Hidden while online, shown when the browser goes offline. -->
+    <div
+      id="connectivity-banner"
+      role="status"
+      style="
+        display: none;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2147483647;
+        padding: 8px 12px;
+        text-align: center;
+        font: 500 12px/1.4 system-ui, -apple-system, sans-serif;
+        color: #fafafa;
+        background: #3f3f46;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      "
+    >
+      Sin conexión — mostrando datos guardados
+    </div>
+    <script>
+      (function () {
+        var banner = document.getElementById("connectivity-banner");
+        function updateBanner() {
+          banner.style.display = navigator.onLine ? "none" : "block";
+        }
+        window.addEventListener("online", updateBanner);
+        window.addEventListener("offline", updateBanner);
+        updateBanner();
+
+        if ("serviceWorker" in navigator) {
+          window.addEventListener("load", function () {
+            navigator.serviceWorker.register("/sw.js").catch(function (err) {
+              console.warn("Service worker registration failed:", err);
+            });
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
