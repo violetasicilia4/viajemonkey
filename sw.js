@@ -1,10 +1,10 @@
-const CACHE_VERSION = "v2";
+const CACHE_VERSION = "v3";
 const CACHE_NAME = `monkeytrip-shell-${CACHE_VERSION}`;
 
 const APP_SHELL = [
   "/",
   "/index.html",
-  "/assets/index-crgr9kqv.js",
+  "/assets/index-crgr9kqv-v2.js",
   "/assets/index-bbdv7vmt.css",
   "/manifest.webmanifest",
   "/offline.html",
